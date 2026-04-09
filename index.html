@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Business Expert System</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<body>
+  <div class="glow-bottom"></div>
+  <div class="wrapper">
+
+    <div class="ticker">
+      <span class="ticker-dot"></span>
+      UBES v3.0 &nbsp;&middot;&nbsp; Knowledge Base Active &nbsp;&middot;&nbsp; 20 Factors &nbsp;&middot;&nbsp; Prolog +
+      JS Engine
+    </div>
+
+    <div class="site-header">
+      <div class="logo-mark">&#127970;</div>
+      <div>
+        <h1>Urban Business Expert System</h1>
+        <p>Full-spectrum viability analysis for urban entrepreneurs</p>
+      </div>
+      <div class="badge">Expert System</div>
+    </div>
+
+    <!-- 6-step tracker -->
+    <div class="step-tracker" id="tracker">
+      <div class="step-dot active" id="dot1">1</div>
+      <div class="step-line">
+        <div class="step-line-fill" id="line1"></div>
+      </div>
+      <div class="step-dot" id="dot2">2</div>
+      <div class="step-line">
+        <div class="step-line-fill" id="line2"></div>
+      </div>
+      <div class="step-dot" id="dot3">3</div>
+      <div class="step-line">
+        <div class="step-line-fill" id="line3"></div>
+      </div>
+      <div class="step-dot" id="dot4">4</div>
+      <div class="step-line">
+        <div class="step-line-fill" id="line4"></div>
+      </div>
+      <div class="step-dot" id="dot5">5</div>
+      <div class="step-line">
+        <div class="step-line-fill" id="line5"></div>
+      </div>
+      <div class="step-dot" id="dot6">6</div>
+    </div>
+
+    <div class="card" id="form-card">
+
+      <!-- STEP 1 — Business Profile -->
+      <div class="step active" id="s1">
+        <div class="step-heading">
+          <div class="step-icon">&#128202;</div>
+          <div>
+            <h2>Business Profile</h2>
+            <p>Basic information about the type of business you plan to open</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="field">
+          <label>Business type</label>
+          <select id="business_type">
+            <option value="cafe">&#9749; Café</option>
+            <option value="gaming_cafe">&#127918; Gaming Café</option>
+            <option value="luxury">&#128142; Luxury Shop</option>
+            <option value="handicraft">&#129520; Handicraft / Artisan</option>
+            <option value="fast_food">&#127829; Fast Food</option>
+            <option value="stationery">&#128218; Stationery / Books</option>
+            <option value="tutoring">&#127979; Tutoring / Education</option>
+            <option value="grocery">&#128722; Grocery / Superette</option>
+            <option value="clothing">&#128084; Clothing Store</option>
+            <option value="other">&#128188; Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Local unemployment rate</label>
+          <div class="toggle-group">
+            <button class="toggle-btn" data-group="unemployment_rate" data-val="low">&#128994; Low</button>
+            <button class="toggle-btn selected" data-group="unemployment_rate" data-val="medium">&#128993;
+              Medium</button>
+            <button class="toggle-btn" data-group="unemployment_rate" data-val="high">&#128308; High</button>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Seasonal business?</label>
+            <div class="toggle-group">
+              <button class="toggle-btn" data-group="seasonal_business" data-val="yes">&#10003; Yes</button>
+              <button class="toggle-btn selected" data-group="seasonal_business" data-val="no">&#10005; No</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Backup off-peak strategy?</label>
+            <div class="toggle-group">
+              <button class="toggle-btn selected" data-group="backup_strategy" data-val="yes">&#10003; Yes</button>
+              <button class="toggle-btn" data-group="backup_strategy" data-val="no">&#10005; No</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-next" onclick="goTo(2)">Next &mdash; Market &#8594;</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — Market Conditions -->
+      <div class="step" id="s2">
+        <div class="step-heading">
+          <div class="step-icon">&#128200;</div>
+          <div>
+            <h2>Market Conditions</h2>
+            <p>Competition and consumer demand in the target zone</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="field">
+          <label>Number of direct competitors nearby</label>
+          <input type="number" id="competitors" min="0" value="3">
+        </div>
+
+        <div class="field">
+          <label>Are competitors the same business type?</label>
+          <div class="toggle-group">
+            <button class="toggle-btn selected" data-group="same_type" data-val="yes">&#10003; Yes</button>
+            <button class="toggle-btn" data-group="same_type" data-val="no">&#10005; No</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Competitors' online review quality</label>
+          <div class="toggle-group">
+            <button class="toggle-btn selected" data-group="online_reviews_competitors" data-val="good">&#11088; Good
+              (4★+)</button>
+            <button class="toggle-btn" data-group="online_reviews_competitors" data-val="poor">&#128308; Poor (&lt;
+              3★)</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Local trend for this business type</label>
+          <div class="toggle-group">
+            <button class="toggle-btn selected" data-group="local_trend" data-val="growing">&#128200; Growing</button>
+            <button class="toggle-btn" data-group="local_trend" data-val="declining">&#128201; Declining</button>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-back" onclick="goTo(1)">&#8592; Back</button>
+          <button class="btn btn-next" onclick="goTo(3)">Next &mdash; Location &#8594;</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Location & Demographics -->
+      <div class="step" id="s3">
+        <div class="step-heading">
+          <div class="step-icon">&#127968;</div>
+          <div>
+            <h2>Location &amp; Demographics</h2>
+            <p>Physical environment, footfall, and area characteristics</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="field">
+          <label>Population density</label>
+          <div class="toggle-group">
+            <button class="toggle-btn" data-group="pop_density" data-val="low">Low</button>
+            <button class="toggle-btn selected" data-group="pop_density" data-val="medium">Medium</button>
+            <button class="toggle-btn" data-group="pop_density" data-val="high">High</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Estimated youth ratio in area (%)</label>
+          <input type="number" id="youth_ratio" min="0" max="100" value="40">
+          <span class="info-chip">50%+ = strong youth market</span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Near university / school?</label>
+            <div class="toggle-group">
+              <button class="toggle-btn" data-group="near_university" data-val="yes">&#10003; Yes</button>
+              <button class="toggle-btn selected" data-group="near_university" data-val="no">&#10005; No</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Tourism area?</label>
+            <div class="toggle-group">
+              <button class="toggle-btn" data-group="tourism_area" data-val="yes">&#10003; Yes</button>
+              <button class="toggle-btn selected" data-group="tourism_area" data-val="no">&#10005; No</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Area under development?</label>
+            <div class="toggle-group">
+              <button class="toggle-btn" data-group="area_development" data-val="yes">&#10003; Yes</button>
+              <button class="toggle-btn selected" data-group="area_development" data-val="no">&#10005; No</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Near public transport?</label>
+            <div class="toggle-group">
+              <button class="toggle-btn selected" data-group="near_transport" data-val="yes">&#10003; Yes</button>
+              <button class="toggle-btn" data-group="near_transport" data-val="no">&#10005; No</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Area security level</label>
+          <div class="toggle-group">
+            <button class="toggle-btn" data-group="security" data-val="low">&#9888; Low</button>
+            <button class="toggle-btn selected" data-group="security" data-val="medium">&#128308; Medium</button>
+            <button class="toggle-btn" data-group="security" data-val="high">&#128274; High</button>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-back" onclick="goTo(2)">&#8592; Back</button>
+          <button class="btn btn-next" onclick="goTo(4)">Next &mdash; Financials &#8594;</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Financials -->
+      <div class="step" id="s4">
+        <div class="step-heading">
+          <div class="step-icon">&#128178;</div>
+          <div>
+            <h2>Financial Viability</h2>
+            <p>Revenue projections and capital resilience</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="field">
+          <label>Expected monthly income (DZD)</label>
+          <input type="number" id="income" min="0" value="150000">
+        </div>
+        <div class="field">
+          <label>Monthly break-even point (DZD)</label>
+          <input type="number" id="bep" min="0" value="120000">
+        </div>
+        <div class="field">
+          <label>Monthly rent cost (DZD)</label>
+          <input type="number" id="rent" min="0" value="30000">
+          <span class="info-chip">Keep rent below 35% of income</span>
+        </div>
+        <div class="field">
+          <label>Capital buffer &mdash; months of reserve</label>
+          <input type="number" id="buffer" min="0" value="4">
+          <span class="info-chip">6+ months = strong cushion</span>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-back" onclick="goTo(3)">&#8592; Back</button>
+          <button class="btn btn-next" onclick="goTo(5)">Next &mdash; Strengths &#8594;</button>
+        </div>
+      </div>
+
+      <!-- STEP 5 — Business Strengths -->
+      <div class="step" id="s5">
+        <div class="step-heading">
+          <div class="step-icon">&#127942;</div>
+          <div>
+            <h2>Business Strengths</h2>
+            <p>Competitive differentiators and market positioning</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="field">
+          <label>Unique value proposition?</label>
+          <div class="toggle-group">
+            <button class="toggle-btn selected" data-group="uvp" data-val="yes">&#10003; Yes &mdash; we stand
+              out</button>
+            <button class="toggle-btn" data-group="uvp" data-val="no">&#10005; Not really</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Educational / tutoring type of business?</label>
+          <div class="toggle-group">
+            <button class="toggle-btn" data-group="biz_edu" data-val="yes">&#10003; Yes</button>
+            <button class="toggle-btn selected" data-group="biz_edu" data-val="no">&#10005; No</button>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn btn-back" onclick="goTo(4)">&#8592; Back</button>
+          <button class="btn btn-next" onclick="goTo(6)">Next &mdash; Review &#8594;</button>
+        </div>
+      </div>
+
+      <!-- STEP 6 — Final Review -->
+      <div class="step" id="s6">
+        <div class="step-heading">
+          <div class="step-icon">&#128196;</div>
+          <div>
+            <h2>Final Review</h2>
+            <p>Confirm all inputs before running the expert analysis</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="summary-grid" id="summary-grid"></div>
+        <div class="nav">
+          <button class="btn btn-back" onclick="goTo(5)">&#8592; Back</button>
+          <button class="btn btn-next" id="analyze-btn" onclick="analyze()">&#9889; Run Analysis</button>
+        </div>
+      </div>
+
+    </div><!-- /form-card -->
+
+    <!-- RESULTS -->
+    <div id="results">
+      <div class="card">
+        <div class="verdict-banner">
+          <div class="verdict-eyebrow">Analysis complete</div>
+          <div class="verdict-title" id="v-title"></div>
+          <div class="verdict-desc" id="v-desc"></div>
+        </div>
+
+        <div class="ring-wrap">
+          <svg width="150" height="150" viewBox="0 0 150 150">
+            <circle cx="75" cy="75" r="58" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="12" />
+            <circle cx="75" cy="75" r="58" fill="none" id="ring-arc" stroke-width="12" stroke-linecap="round"
+              stroke-dasharray="364.4" stroke-dashoffset="364.4" transform="rotate(-90 75 75)"
+              style="transition:stroke-dashoffset 1.3s cubic-bezier(.4,0,.2,1);" />
+            <text x="75" y="69" text-anchor="middle" font-size="28" font-weight="700" font-family="DM Mono,monospace"
+              fill="#f4f1eb" id="ring-pct">0%</text>
+            <text x="75" y="88" text-anchor="middle" font-size="11" font-family="DM Sans,sans-serif"
+              fill="#8a96a8">success score</text>
+          </svg>
+        </div>
+
+        <div class="divider"></div>
+        <div class="result-block">
+          <div class="block-label">Factor breakdown</div>
+          <div id="bars"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="result-block">
+          <div class="block-label">Findings</div>
+          <div class="flags-grid" id="flags"></div>
+        </div>
+        <button class="btn btn-next" onclick="printReport()" style="margin-top: 1rem; width: 100%;">
+          Download Analysis Report (PDF)
+        </button>
+
+        <button class="btn-reset" onclick="resetAll()">&#8592; Start New Analysis</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
